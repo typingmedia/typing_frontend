@@ -1,0 +1,61 @@
+/* animations.css */
+@keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .animate-slide-in-left {
+    animation: slideInFromLeft 1s ease-out forwards;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInFromRight 1s ease-out forwards;
+  }
+
+  .client-container{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  /* Assuming you're using 'display' as the base className */
+.display-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.display-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 350ms, transform 350ms;
+}
+
+.display-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.display-exit-active {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 350ms, transform 350ms;
+}
+
+  
+

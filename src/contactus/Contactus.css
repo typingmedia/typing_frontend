@@ -1,0 +1,14 @@
+.phoneInput{
+    height: 50px;
+    width: 100%;
+}
+
+.intl-tel-input.allow-dropdown .flag-container {
+    width: 100%;
+    height:50px;
+}
+.intl-tel-input.allow-dropdown input, .intl-tel-input.allow-dropdown input[type=text], .intl-tel-input.allow-dropdown input[type=tel] {
+    width: 100%;
+    height: 50px;
+
+}

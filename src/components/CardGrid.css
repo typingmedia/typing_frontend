@@ -1,0 +1,74 @@
+.card-grid {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card-grid:not(.client)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 1;
+}
+
+.card-grid::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  z-index: 0; /* Make sure it's behind the content */
+}
+
+.card-grid:hover {
+  background-color: #6b6868;
+}
+
+.card-grid:not(.client):hover {
+  background-color: #6b6868;
+  background-image: none !important;
+}
+
+.card-grid:not(.client)::after {
+  opacity: 0.3; /* Adjust as needed */
+  background-color: #6b6868;
+}
+
+.card-grid.client img {
+  filter: none;
+}
+
+.card-grid .MuiCardHeader-root,
+.card-grid .MuiCardContent-root {
+  position: relative;
+  z-index: 2;
+}
+
+.card-grid:not(.client) .MuiCardContent-root {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-grid:not(.client):hover .MuiCardContent-root {
+  opacity: 1;
+}
+
+.card-grid:not(.client):hover .MuiCardHeader-root {
+  opacity: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+ 

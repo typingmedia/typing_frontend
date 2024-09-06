@@ -1,0 +1,86 @@
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 1s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 1s ease-out forwards;
+}
+
+.logo {
+    border-radius: 50%;
+    width: 100%;
+    height: auto;
+    max-width: 370px; /* Adjust size as needed */
+  }
+  
+  /* Typography styles */
+  .headerTypography {
+    font-weight: 800;
+    border-left: 6px solid black;
+    padding-left: 13px;
+    margin-left: -22px;
+  }
+  
+  .subHeaderTypography {
+    font-weight: bold;
+    color: grey;
+  }
+  
+  .descriptionTypography {
+    font-weight: bold;
+  }
+  
+  .textDescription {
+    color: gray;
+    line-height: 200% !important;
+  }
+ 
+  .imageTextContainer {
+    margin-top: 1rem;
+   
+  }
+  
+  .imageTextItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   
+    gap: 2rem;
+  }
+  
+  /* Square image styles */
+  .squareImage {
+    width: 50px; /* Width of the square */
+    height: 50px; /* Height of the square */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 8px; /* Optional: Rounded corners */
+  }
+  .imageTextContainer .imageTextItem .textBeforeBr {
+    color: #E60030;
+    font-weight: bold; /* Use 'bold' for a standard bold weight */
+  }
+  
+  
