@@ -10,14 +10,13 @@ import {
   Grid,
   CircularProgress,
 } from "@mui/material";
-import IntlTelInput from "react-intl-tel-input";
-import "react-intl-tel-input/dist/main.css";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import "./Contactus.css";
 import Modal from "@mui/material/Modal";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { axiosClient } from "../axiosClient";
 import { useScroll } from "../components/ScrollProvider";
-
 
 const style = {
   position: "absolute",
@@ -35,12 +34,12 @@ const ContactUs = () => {
   const [loading, setLoading] = React.useState(false);
   const { contactRef } = useScroll(); 
   const handleClose = () => setOpen(false);
+
   const {
     control,
     handleSubmit,
     formState: { errors },
     reset,
-    setValue,
     trigger,
   } = useForm({
     defaultValues: {
@@ -54,39 +53,36 @@ const ContactUs = () => {
   const onSubmit = async (data) => {
     console.log("Form data submitted:", data);
 
-   try {
-    setLoading(true);
-    const response = await axiosClient.post("/api/user/create", data);
-    if (response.status === 200) {
-      try {
-
-        const response = await axiosClient.post("/api/user/sendEmail", {
-          name:data.name,
-          email:data.email,
-          contact:data.phone,
-          remark:data.remarks,
-        });
+    try {
+      setLoading(true);
+      const response = await axiosClient.post("/api/user/create", data);
+      if (response.status === 200) {
+        try {
+          const response = await axiosClient.post("/api/user/sendEmail", {
+            name: data.name,
+            email: data.email,
+            contact: data.phone,
+            remark: data.remarks,
+          });
+          setLoading(false);
+          setOpen(true);
+        } catch (error) {
+          setLoading(false);
+          console.error("Something went wrong");
+        }
+      } else {
         setLoading(false);
-        setOpen(true);
-      } catch (error) {
-        setLoading(false);
-        console.error("Something went wrong")
+        console.error("Something went wrong");
       }
-      
-    }
-    else{
+      reset();
+    } catch (error) {
       setLoading(false);
-      console.error("Something went wrong")
+      console.error("Something went wrong");
     }
-    reset();
-   } catch (error) {
-    
-   }
   };
 
   return (
     <>
-      {" "}
       <Grid container ref={contactRef}>
         <Grid item xs={12} md={12}>
           <Box
@@ -154,11 +150,9 @@ const ContactUs = () => {
                       required: "Phone number is required",
                       validate: {
                         validLength: (value) => {
-                          const digitsOnly = value
-                            ? value.replace(/\D/g, "")
-                            : "";
+                          const digitsOnly = value.replace(/\D/g, ""); // Strip all non-digit characters
                           return (
-                            digitsOnly.length === 10 ||
+                            digitsOnly.length === 12 ||
                             "Phone number must be exactly 10 digits"
                           );
                         },
@@ -166,23 +160,20 @@ const ContactUs = () => {
                     }}
                     render={({ field: { onChange, value } }) => (
                       <Box className="phoneInput">
-                        <IntlTelInput
-                          preferredCountries={["in"]}
-                          containerClassName="intl-tel-input"
-                          inputClassName="form-control"
-                          defaultCountry="in"
-                          autoPlaceholder="aggressive"
-                          value={value || ""}
-                          onPhoneNumberChange={(
-                            isValid,
-                            phoneValue,
-                            countryData
-                          ) => {
-                            const sanitizedValue = phoneValue || "";
-                            onChange(sanitizedValue);
-                            trigger("phone");
+                        <PhoneInput
+                          country={"in"}
+                          value={value}
+                          onChange={(phone) => {
+                            // Strip formatting (like hyphens)
+                            const sanitizedPhone = phone.replace(/\D/g, "");
+                            onChange(sanitizedPhone);
+                            trigger("phone"); // Revalidate after change
                           }}
-                          style={{ width: "100%" }} // Full width
+                          enableSearch={false}
+                          disableCountryCode={false} // Disable country code
+                          disableDropdown={false}    // Disable dropdown
+                          inputStyle={{ width: "100%" }}  // Full width
+                          autoFormat={false}  // Disable formatting (no hyphens or spaces)
                         />
                       </Box>
                     )}
@@ -228,7 +219,11 @@ const ContactUs = () => {
                       },
                     }}
                   >
-                 {loading?<CircularProgress sx={{color:"gray"}} size={30}/>:<>Contact Us</>}
+                    {loading ? (
+                      <CircularProgress sx={{ color: "gray" }} size={30} />
+                    ) : (
+                      <>Contact Us</>
+                    )}
                   </Button>
                 </form>
               </CardContent>
@@ -257,7 +252,7 @@ const ContactUs = () => {
             <CheckCircleOutlineIcon fontSize="medium" />
           </Typography>
           <Typography variant="h6" id="modal-modal-description" sx={{ mt: 2 }}>
-            "Draft recieved! Now,let's start writing your story"
+            "Draft received! Now, let's start writing your story"
           </Typography>
 
           <Button
