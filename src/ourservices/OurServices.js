@@ -23,7 +23,7 @@ import script from "./14.png";
 const cardData = [
   {
     id: 1,
-    title: "INFLUENCER MARKETING & UGC SCRIPTS",
+    title: "INFLUENCER MARKETING & UGC",
     content: "Custom scripts that connect influencers with their audience in an authentic and impactful way",
     backgroundImage: influencer,
   },

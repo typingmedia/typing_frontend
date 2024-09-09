@@ -81,7 +81,7 @@ export default function TabBar() {
             selected={value === 1}
           />
           <CustomTab sx={{fontSize:'12px'}}
-            label="Our Client" 
+            label="Our Clients" 
             {...a11yProps(0)}
             selected={value === 2}
           />
