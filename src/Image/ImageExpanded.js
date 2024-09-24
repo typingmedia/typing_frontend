@@ -12,7 +12,12 @@ const ImageExpanded = () => {
   }, []);
 
   return (
-    <Box className="box-img">
+    <Box className="box-img" sx={{
+      height: {
+        xs: "90vh", 
+        md: "100vh", 
+      },
+    }}>
       <img
         src={logo}
         alt='logo'
