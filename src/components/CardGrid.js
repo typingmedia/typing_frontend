@@ -60,7 +60,6 @@ const CardGrid = (props) => {
             justifyContent: "center",
             alignItems: "center",
             height: "100%",
-            marginBottom:2,
             backgroundColor:'white',
           }}
         >
@@ -71,6 +70,7 @@ const CardGrid = (props) => {
               maxWidth:props?.image=='policybazaar'?'100%':'80%',
               maxHeight: "70%",
               objectFit: "contain",
+              marginBottom:20
             }}
           />
         </CardContent>
