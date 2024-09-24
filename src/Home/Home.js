@@ -1,6 +1,5 @@
 import { Box, Divider, Grid, Slide } from "@mui/material";
 import * as React from "react";
-import Navbar from "../navbar/Navbar";
 import TabBar from "../tab/TabBar";
 import ContactUs from "../contactus/ContactUs";
 import Header from "../header/Header";
@@ -14,11 +13,8 @@ export default function Home() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log("entry:", entry); // Debugging: Log the observer entry
+         
           if (entry.isIntersecting) {
-            console.log("ContactUs is in view!");
-            
-            // Set a delay of 2.5 seconds (2500 milliseconds)
             setTimeout(() => {
               setShowContactUs(true);
               observer.disconnect(); // Disconnect after animation starts

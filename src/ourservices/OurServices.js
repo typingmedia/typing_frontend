@@ -109,106 +109,112 @@ const OurServices = () => {
 
   return (
     <Box
+    sx={{
+      flexGrow: 1,
+      display: "flex",
+      justifyContent: "center",
+      width: "100%", 
+      overflowX: "hidden", 
+    }}
+    className="client-container"
+  >
+    <Grid
+      container
+      spacing={2}
+      justifyContent="center"
       sx={{
-        flexGrow: 1,
-        display: "flex",
-        justifyContent: "center",
+        maxWidth: "100%",
+        width: "100%", 
+        maxWidth: "1000px", 
+        margin: "0 auto", 
+        boxSizing: "border-box", 
       }}
-      className="client-container"
     >
-      <Grid
-        container
-        spacing={2}
-        justifyContent="center"
-        sx={{
-          maxWidth: "100%",
-          width: "1000px",
-        }}
-      >
-        {cardData
-          .slice(0, isSmallScreen ? visibleCards : (show ? cardData.length : 9))
-          .map((card) => (
-            <Grid
-              key={card.id}
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              className={
-                animated ? (card.id % 2 === 0 ? "animate-slide-in-right" : "animate-slide-in-left") : ""
-              }
-            >
-              <CardGrid
-                title={card.title}
-                content={card.content}
-                backgroundImage={card.backgroundImage}
-              />
-            </Grid>
-          ))}
-      
-      {isSmallScreen && (
-      <Grid item xs={12}>
-        <Box sx={{ marginTop: 2, textAlign: 'center' }}>
-          <Stack direction="row" spacing={2} justifyContent="center">
-            {visibleCards < cardData.length && (
-              <Button
-                variant="contained"
-                onClick={loadMoreCards}
-                sx={{
-                  backgroundColor: '#000000',
-                  '&:hover': {
-                    backgroundColor: '#333333',
-                  },
-                }}
-              >
-                Load More
-              </Button>
-            )}
-            {visibleCards > 3 && (
-              <Button
-                variant="contained"
-                onClick={handleLoadLess}
-                sx={{
-                  backgroundColor: '#000000',
-                  '&:hover': {
-                    backgroundColor: '#333333',
-                  },
-                }}
-              >
-                Show Less
-              </Button>
-            )}
-          </Stack>
-        </Box>
-      </Grid>
-    )}
-        {!isSmallScreen && (
+      {cardData
+        .slice(0, isSmallScreen ? visibleCards : show ? cardData.length : 9)
+        .map((card) => (
           <Grid
+            key={card.id}
             item
             xs={12}
-            className={animated ? "animate-slide-in-right" : ""}
-            container
-            justifyContent="center"
+            sm={6}
+            md={4}
+            className={
+              animated ? (card.id % 2 === 0 ? "animate-slide-in-right" : "animate-slide-in-left") : ""
+            }
           >
-            <Button
-              variant="contained"
-              sx={{
-                mt: 2,
-                backgroundColor: "#000000",
-                "&:hover": {
-                  backgroundColor: "#333333",
-                },
-              }}
-              onClick={() => {
-                setShow(!show);
-              }}
-            >
-              {show ? <>Hide</> : <>Load More</>}
-            </Button>
+            <CardGrid
+              title={card.title}
+              content={card.content}
+              backgroundImage={card.backgroundImage}
+            />
           </Grid>
-        )}
-      </Grid>
-    </Box>
+        ))}
+  
+      {isSmallScreen && (
+        <Grid item xs={12}>
+          <Box sx={{ marginTop: 2, textAlign: "center" }}>
+            <Stack direction="row" spacing={2} justifyContent="center">
+              {visibleCards < cardData.length && (
+                <Button
+                  variant="contained"
+                  onClick={loadMoreCards}
+                  sx={{
+                    backgroundColor: "#000000",
+                    "&:hover": {
+                      backgroundColor: "#333333",
+                    },
+                  }}
+                >
+                  Load More
+                </Button>
+              )}
+              {visibleCards > 3 && (
+                <Button
+                  variant="contained"
+                  onClick={handleLoadLess}
+                  sx={{
+                    backgroundColor: "#000000",
+                    "&:hover": {
+                      backgroundColor: "#333333",
+                    },
+                  }}
+                >
+                  Show Less
+                </Button>
+              )}
+            </Stack>
+          </Box>
+        </Grid>
+      )}
+      {!isSmallScreen && (
+        <Grid
+          item
+          xs={12}
+          className={animated ? "animate-slide-in-right" : ""}
+          container
+          justifyContent="center"
+        >
+          <Button
+            variant="contained"
+            sx={{
+              mt: 2,
+              backgroundColor: "#000000",
+              "&:hover": {
+                backgroundColor: "#333333",
+              },
+            }}
+            onClick={() => {
+              setShow(!show);
+            }}
+          >
+            {show ? <>Hide</> : <>Load More</>}
+          </Button>
+        </Grid>
+      )}
+    </Grid>
+  </Box>
+  
   );
 };
 

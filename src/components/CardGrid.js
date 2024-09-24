@@ -60,7 +60,8 @@ const CardGrid = (props) => {
             justifyContent: "center",
             alignItems: "center",
             height: "100%",
-            marginBottom:2
+            marginBottom:2,
+            backgroundColor:'white',
           }}
         >
           <img

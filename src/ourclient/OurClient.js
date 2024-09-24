@@ -51,6 +51,8 @@ const OurClient = () => {
         flexGrow: 1,
         display: "flex",
         justifyContent: "center",
+        width: "100%", 
+        overflowX: "hidden", 
       }}
       className="client-container"
     >
@@ -59,8 +61,13 @@ const OurClient = () => {
         spacing={2}
         justifyContent="center"
         sx={{
-          maxWidth: "100%",
-          width: "800px",
+          maxWidth: "100%", 
+          width: "100%", 
+          maxWidth: "900px",
+          margin: "0 auto",
+          boxSizing: "border-box",
+          paddingBottom: '4px',
+          
         }}
       >
         <Grid container spacing={2} justifyContent="center">

@@ -23,17 +23,25 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: {
+    xs: 320, // Small screens
+    md: 450, // Medium and above
+  },
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
 };
 
+
 const ContactUs = () => {
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const { contactRef } = useScroll(); 
-  const handleClose = () => setOpen(false);
+  const handleClose = () =>{
+    setOpen(false);
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });  
+  };
 
   const {
     control,
@@ -51,8 +59,7 @@ const ContactUs = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log("Form data submitted:", data);
-
+   
     try {
       setLoading(true);
       const response = await axiosClient.post("/api/user/create", data);
@@ -256,19 +263,23 @@ const ContactUs = () => {
           </Typography>
 
           <Button
-            variant="contained"
-            onClick={() => setOpen(false)}
-            sx={{
-              float: "right",
-              mt: 2,
-              backgroundColor: "#000000",
-              "&:hover": {
-                backgroundColor: "#333333",
-              },
-            }}
-          >
-            Close
-          </Button>
+  variant="contained"
+  onClick={() => {
+    setOpen(false); 
+    window.scrollTo({ top: 0, behavior: 'smooth' });  
+  }}
+  sx={{
+    float: "right",
+    mt: 2,
+    backgroundColor: "#000000",
+    "&:hover": {
+      backgroundColor: "#333333",
+    },
+  }}
+>
+  Close
+</Button>
+
         </Box>
       </Modal>
     </>
